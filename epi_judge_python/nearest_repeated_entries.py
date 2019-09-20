@@ -2,8 +2,14 @@ from test_framework import generic_test
 
 
 def find_nearest_repetition(paragraph):
-    # TODO - you fill in here.
-    return 0
+    d = {}
+    ans = float("inf")
+    for i, word in enumerate(paragraph):
+        prev_i = d.get(word, None)
+        if prev_i is not None:
+            ans = min(ans, i-prev_i)
+        d[word] = i
+    return ans if ans != float('inf') else -1
 
 
 if __name__ == '__main__':
